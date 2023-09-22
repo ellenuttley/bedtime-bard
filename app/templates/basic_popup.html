@@ -1,0 +1,29 @@
+<!--This page contains the HTML for the popup page that shows between story pieces, it displays the popup text generated
+for the corresponding bedtime routine step - the bedtime routine starts at -1 to account for the click needed to initially
+navigate to this page.
+This page then redirects to the appropriate show_story page-->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <h1 class="title fs-2" id="exampleModalLiveLabel">DO THE THING!</h1>
+
+        </div>
+        <div class="modal-body text-center">
+          <p class="fs-4">
+            {{bedtime_routine[num-1]}}
+          </p>
+        </div>
+        <div class="modal-footer justify-content-center">
+              <a class="btn" href="{{ url_for('routes.show_story', num=num) }}">DONE!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop fade show"></div>
+{% endblock %}

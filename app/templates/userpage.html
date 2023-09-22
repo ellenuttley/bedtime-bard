@@ -1,0 +1,44 @@
+<!--This page contains the HTML for the userpage, which contains the button to activate the story generation process.
+This button redirects to the route : 'story_generation', which then redirects to the first story page.
+Until this redirect is completed, the button becomes a loading button ( with functionality written below in JavaScript)-->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="userpage container my-5 rounded-5 col-lg-10">
+  <div class="py-3 p-md-5 text-center row">
+    <div class="col-md-8 col-xl-9">
+      <div class="bubble-bot-container">
+        <div class="bubble">
+          Greetings {{ session.get('name') }}!
+        </div>
+        <img class="bot" src="{{ url_for('static', filename='img/robot-happy-with-book.png') }}"/>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-xl-3 d-flex align-items-center">
+      <a href="{{ url_for('routes.generate_story') }}" class="closed-book">
+        <img src="{{ url_for('static', filename='img/book-closed.png') }}" alt="">
+        <span id="whoop" class="fs-4">Click to Read a Story!</span>
+        <span id="loading" class="hidden-element">Please wait... Robot Writing Story<span class="loading-spinner"></span></span>
+      </a>
+    </div>
+  </div>
+</div>
+<script>
+  const whoopElm = document.getElementById("whoop");
+  const loadingElm = document.getElementById("loading");
+  whoopElm.addEventListener("click", loadingState);
+  window.addEventListener("unload", notLoadingState);
+  function loadingState(){
+    whoopElm.classList.add("hidden-element");
+    loadingElm.classList.remove("hidden-element");
+    loadingElm.classList.add("show-loading");
+  }
+  // So it resets for things like when they click the back button
+  function notLoadingState(){
+    whoopElm.classList.remove("hidden-element");
+    loadingElm.classList.add("hidden-element");
+    loadingElm.classList.remove("show-loading");
+  }
+</script>
+{% endblock %}

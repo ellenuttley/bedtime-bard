@@ -1,0 +1,26 @@
+<!--This page contains the HTML for the homepage. It contains the buttons to either route to Log in or Register-->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="homepage container my-5 rounded-5 col-lg-10">
+  <div class="py-3 p-md-5 text-center">
+    <h1 class="title mx-auto mb-4">
+      <span class="d-inline-block text-highlight">
+        Welcome to Bedtime Bard
+      </span>
+    </h1>
+    <p class="text-highlight fs-3">
+      <span class="d-inline text-highlight">
+        Where a robot writes your bedtime story!
+      </span>
+    </p>
+    <div class="text-center mb-4 row justify-content-center">
+      <div class="col-md-8">
+        <img src="{{ url_for('static', filename='img/robot-hello.png') }}" alt="" class="robot ml-2">
+      </div>
+    </div>
+    <a class="btn m-2 btn-lg px-4 rounded-pill" href="{{ url_for('routes.signup') }}">Register Here</a>
+    <a class="btn m-2 btn-lg px-4 rounded-pill" href="{{ url_for('routes.login') }}">Login Here</a>
+  </div>
+</div>
+{% endblock %}

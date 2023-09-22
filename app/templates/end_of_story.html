@@ -1,0 +1,42 @@
+<!--This page contains the HTML for the last page, after the story has finished. It has the options to either
+redirect to the homepage, or to start the story process again-->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="modal story-end fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h1 class="title fs-1 text-center" id="exampleModalLiveLabel">
+          Ok {{ session['name'] }}, that's the end of this story
+        </h1>
+      </div>
+      <div class="text-center mb-4 row justify-content-center">
+        <div class="col-md-8">
+          <img src="{{ url_for('static', filename='img/robot-in-bed.png') }}" alt="" class="robot ml-2">
+        </div>
+      </div>
+      <div class="modal-body text-center">
+        <p class="fs-4">
+
+        </p>
+        <p class="fs-4">
+          Now it's time to close your eyes and go to sleep just like me.
+        </p>
+        <p class="fs-4">
+          See you again tomorrow! Goodnight :)
+        </p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <a href="{{ url_for('routes.user_profile', num=0) }}" class="btn m-2 btn-lg px-7 rounded-pill">Another Story?</a>
+        <a class="btn m-2 btn-lg px-7 rounded-pill" href="{{ url_for('routes.home') }}">Take Me Home</a>
+      </div>
+      <p class="fs-4">
+        </p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show"></div>
+{% endblock %}

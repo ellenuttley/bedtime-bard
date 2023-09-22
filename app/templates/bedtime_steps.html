@@ -1,0 +1,17 @@
+<!--This page contains the HTML for the BedtimeRoutineForm
+This is registration process : 3 / 3 -->
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+<div class="signup container my-5 rounded-5 col-lg-10">
+  <div class="py-3 p-md-5 text-center">
+    <div class="form-container">
+      <h3>Register (Section 3/3)</h3>
+      <h5>Click on the box to select each step in your child's bedtime routine!</h5>
+      {{ render_form(form, action='bedtime_steps', method='post') }}
+      {{ form.csrf_token }}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!--This page contains the HTML for NewUserForm
+This is registration process : 1 / 3 -->
+
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+<div class="signup container my-5 rounded-5 col-lg-10">
+  <div class="py-3 p-md-5 text-center">
+    <h1 class="title mx-auto mb-4">
+      <span class="d-inline-block text-highlight">
+        Join us...
+      </span>
+    </h1>
+    <p class="text-highlight fs-3">
+      <span class="d-inline text-highlight">
+        ...in the land of ZZZZZ
+      </span>
+    </p>
+    <div class="form-container">
+      <h3>Register (Section 1/3)</h3>
+      <p>Please enter your child's details </p>
+<!--      <p><i>For siblings, please follow the instructions below the appropriate fields</i></p>-->
+      {{ render_form(form, action='signup', method='post') }}
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!--This page contains the HTML for the About Us page-->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="about container my-5 rounded-5 col-lg-10">
+  <div class="py-3 p-md-5 text-center">
+    <h1 class="title mx-auto mb-4">
+      <span class="d-inline-block text-highlight">
+        About Us
+      </span>
+    </h1>
+    <div class="text-center mb-4 row justify-content-center">
+      <div class="col-md-8">
+        <img src="{{ url_for('static', filename='img/robot-happy-with-phone.png') }}" alt="" class="robot ml-2">
+      </div>
+    </div>
+    <p class="text-highlight fs-4">
+      <span class="d-inline text-highlight">
+        BedtimeBard is an innovative app that creates personalized bedtime
+        stories for kids. We understand the importance of a magical and engaging
+        bedtime routine, and that's why we've developed a unique storytelling
+        experience.
+      </span>
+    </p>
+    <p class="text-highlight fs-4">
+      <span class="d-inline text-highlight">
+        Using advanced algorithms, we generate customized stories based on
+        children's names, age, gender, and their preferences for story elements
+        like monsters, angels, and more. Each story is tailored to make kids
+        feel like they are the main characters, bringing their imagination to
+        life.
+      </span>
+    </p>
+    <p class="text-highlight fs-4">
+      <span class="d-inline text-highlight">
+        But what sets BedtimeBard apart is the interactive nature of our
+        stories. Throughout the tale, pop-ups appear, asking children to
+        complete their bedtime routines to proceed further. It's a fun and
+        engaging way to involve kids in their night habits and make bedtime a
+        delightful experience.
+      </span>
+    </p>
+  </div>
+</div>
+{% endblock %}

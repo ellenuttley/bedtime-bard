@@ -1,0 +1,16 @@
+# This file contains all the libraries needed for our app to work
+# It is possible there are come missing that haven't been added, or some extra that we are no longer using
+
+Flask==2.3.2
+sqlalchemy
+wtforms
+flask_wtf
+openai
+pytest
+Jinja2
+flask_sqlalchemy
+bootstrap-flask
+wtforms-alchemy
+flask-login
+bcrypt
+

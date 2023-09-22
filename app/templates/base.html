@@ -1,0 +1,71 @@
+<!--This page contains the programs base HTML, including the navbar with dropdown functionality-->
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Bootstrap styling -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <!-- <Bootstrap theme> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css')}}">
+    <!-- Add favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.png')}}">
+    <title>BedtimeBard</title>
+</head>
+<body class="d-flex flex-column h-100{% if modal %} modal-open{% endif %}">
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar fixed-top bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('routes.home') }}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" width="25" height="25" class="d-inline-block align-text-top" />
+                BedtimeBard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('routes.user_profile') }}">Read a Story!</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('routes.home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url_for('routes.signup') }}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('routes.login') }}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('routes.about') }}">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('routes.logout') }}">Log Out</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    </header>
+
+    <!-- Start main body -->
+    <main class="{{ page_name or '' }}">
+      <div class="container">
+          {% block content %}
+
+          {% endblock content%}
+      </div>
+    </main>
+
+    <!-- Sticky footer -->
+    <footer class="footer mt-auto py-3 bg-body-tertiary">
+        <div class="container text-center">
+          <span class="text-body-secondary">© Copyright Team BedtimeBard 2023</span>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!--This page contains the HTML for ChooseStoryElements Form. Including instructions on how to make multiple selections-->
+<!--This is registration process : 2 / 3-->
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+<div class="signup container my-5 rounded-5 col-lg-10">
+  <div class="py-3 p-md-5 text-center">
+    <div class="form-container">
+      <h3>Register (Section 2/3)</h3>
+      <h6>Hold down the Ctrl or Cmd key to select multiple options!</h6>
+        <p></p>
+<!--        <p><i>For siblings, please add all of their choices.</i></p>-->
+      {{ render_form(se_form, action="story_elements", method='post') }}
+      {{ se_form.csrf_token }}
+    </div>
+  </div>
+</div>
+{% endblock %}
