@@ -5,13 +5,7 @@ Utilising artificial intelligence via the OpenAI API, the app will generate a un
 
 ## How to Use 🛠️
 1. To run the flask app : 
--
-To make sure that your environment is set up correctly for our app to run, please follow these instructions:
-
-Make sure that you have got a virtual environment activated - I think that sometimes pycharm asks you if you want to activate an environment? If so, say yes.
-
-Otherwise, to get into a virtual environment: in the terminal, make sure that you are in the project-for-CFG folder, and then type these commands (one at a time):
-
+- Make sure that you are in the project-for-CFG folder, and then type these commands into the terminal (one at a time):
 $ python -m venv venv
 $ source venv/bin/activate
 
