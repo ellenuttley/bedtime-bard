@@ -22,7 +22,7 @@ from . import login_manager
 import random
 
 # Our API key :
-openai.api_key = "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"
+
 
 # The Blueprint for the routes, that is the imported in init.py :
 routes_bp = Blueprint('routes', __name__)
