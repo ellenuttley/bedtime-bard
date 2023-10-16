@@ -12,6 +12,8 @@ from flask_bootstrap import Bootstrap5
 from flask_login import LoginManager
 import os
 from os import environ, path
+from dotenv import load_dotenv
+
 basedir = path.abspath(path.dirname(__file__))
 
 login_manager = LoginManager()                                            # defines the login manager
@@ -21,7 +23,7 @@ db = SQLAlchemy()                                                         # defi
 
 def create_app():                                                         # function to generate the app
     app = Flask(__name__, instance_relative_config=False)                 # defines the core application
-
+    load_dotenv()
 
     # configures the database :
     app.config['SQLALCHEMY_DATABASE_URI'] =\
@@ -39,10 +41,10 @@ def create_app():                                                         # func
     from . import models
 
     with app.app_context():
-        from . import routes  # Import routes
+        from . import routes  
         from .initial_data import insert_initial_data   #
         bootstrap = Bootstrap5(app)
-        db.create_all()  # Create database tables from our models
+        db.create_all()  # Create database tables from models
 
 # ----------- PLEASE UN-COMMENT BEFORE RUNNING FOR THE FIRST TIME ---------------------------------------------------
         # insert_initial_data()   # inserts initial data to the database - for the forms etc.
