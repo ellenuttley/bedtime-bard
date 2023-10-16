@@ -29,7 +29,7 @@ In the terminal, a link will then appear that looks like this :
 Click that link, and our apps homepage will open in a new window in your browser! 
 
 ## The UX Design 🎨
-![Copy of  Bedtime Bard Wireframe Designs  User Story](https://github.com/ellenuttley/bedtime-bard/assets/113264368/597769bd-f735-47dd-b2c0-9a04ba4d3a4f)
+![Copy of  Bedtime Bard Wireframe Designs  User Story](https://github.com/ellenuttley/bedtime-bard/assets/113264368/001b1db9-1ee6-40d2-ac5e-5dd9e79f8224)
 
 ## Languages, Frameworks & Libraries Used 🖥️
 
