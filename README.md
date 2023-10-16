@@ -44,9 +44,8 @@ Click that link, and our apps homepage will open in a new window in your browser
 - **Static folder**     : 'static' elements eg. CSS, images etc
 - **Templates folder**  : .html frontend files, routed to in the routes.py file
 - **Tests Folder**      : contains tests initialisation, and unit tests for each page    _incomplete_
-- **__init__.py**       : the main code file - contains the app object (__name__) to be used elsewhere in the app
-- **forms.py**          : the forms for creating a new user (done), and for selecting a bedtime routine
+- **__init__.py**       : the main code file - generates the app
+- **forms.py**          : the forms for creating a new user, selecting story elements, and setting the bedtime routine
 - **models.py**         : database model definitions and methods
 - **openai.py**         : code for the functionality of the stories generated using the OpenAI API
-- **requirements.txt**  : a list of libraries needed to use the app
 - **routes.py**         : the routes that map to the html pages above
