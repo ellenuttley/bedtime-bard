@@ -1,4 +1,4 @@
-% I am not sure if this does anything anymore, but I am scared to delete it - Ellen
+# % I am not sure if this does anything anymore, but I am scared to delete it - Ellen
 
 """Flask configuration variables."""
 from os import environ, path

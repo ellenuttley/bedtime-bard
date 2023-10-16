@@ -13,8 +13,6 @@ while working on different computers.
 
 import openai
 
-openai.api_key = "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"   # our OpenAI API key
-
 # Story Generation Step : 2 -- Full generation process in story_generation route in routes.py -------------------------
 # Creates a Story instance, with all the elements needed to inform the prompt
 class Story:
