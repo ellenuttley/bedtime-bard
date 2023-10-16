@@ -19,10 +19,10 @@ from sqlalchemy import func
 from .forms import NewUserForm, ChooseStoryElements, BedtimeRoutineForm
 from .openai import Story, Popup
 from . import login_manager
-import os
-import requests
+import random
 
-openai.api_key = os.getenv('API_KEY')
+# Our API key :
+openai.api_key = "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"
 
 # The Blueprint for the routes, that is the imported in init.py :
 routes_bp = Blueprint('routes', __name__)
@@ -31,6 +31,11 @@ routes_bp = Blueprint('routes', __name__)
 @routes_bp.route("/about_us")
 def about():
     return render_template("about.html", page_name='about')
+
+# # Route for the Bookshelf page :       (not currently functional)
+# @routes_bp.route('/bookshelf')
+# def bookshelf():
+#     return render_template('bookshelf.html')
 
 # Route for the Homepage :
 @routes_bp.route("/")
@@ -59,14 +64,14 @@ def logout():
 # Route for login page :
 @routes_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:                        # if they are already logged in, it routes straight to the userpage
+    if current_user.is_authenticated:                        # if they are already logged in, it routes to the userpage
         return redirect(url_for('routes.user_profile'))
     if request.method == 'POST':                             # form to take the login details
         username = request.form['username']
         password = request.form['password']
-        user = User.query.filter_by(username=username, password=password).first()   
-        if user:                                             
-            login_user(user)                                 
+        user = User.query.filter_by(username=username, password=password).first()   # queries the database to check them
+        if user:                                             # if the check passes ..
+            login_user(user)                                 # they are logged in
             session['name'] = current_user.name              # and their name added to the session
             return redirect(url_for('routes.user_profile'))  # they are then routed to the user page
         else:

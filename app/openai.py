@@ -2,8 +2,18 @@
 This file contains the various OOP pieces for the operation of the story generation algorithm.
 The story generation process weaves in and out of here, and I have tried to note the process well to make it as easy to
 follow as possible.
+
+Additional note : we are on our third API key, as we keep running out of free credits. So if the story generation stops
+functioning, this may be why. I have put a credit card number on the one we now have, but I have set a hard limit so it
+still may run out.
+
+Also : We are away that the API key shouldn't just be saved like this, but we were unsure how to make an env variable
+while working on different computers.
 """
+
 import openai
+
+openai.api_key = "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"   # our OpenAI API key
 
 # Story Generation Step : 2 -- Full generation process in story_generation route in routes.py -------------------------
 # Creates a Story instance, with all the elements needed to inform the prompt
@@ -22,7 +32,7 @@ class Story:
     # The prompts are generated via the _prompt methods below
     @staticmethod
     def ai_request(prompt):
-        global story    
+        global story    # Allows the story variable to be accessed elsewhere, I am not sure if it is working as intended
         try:            # Exception handling for the moderation - to check whether the story passes the check
             response = openai.Completion.create(
                 model="text-davinci-003",
@@ -43,6 +53,11 @@ class Story:
 
     # Writes the prompt for the opening part of the story, using the variables in the story object
     # ... that prompt is then passed to the ai_request method above.
+    # The prompt takes into account the child's pronouns, so the story is accurate to their current identity.
+    # It also stops the AI making an assumption based on their name - something I have also tried to curb by explicitly
+    # stating that the child's name and gender / pronouns should not affect the story content.
+    # It also asks for there to be a limit to the length, and for a title to be generated for each story
+    # - which in an ideal world would be on its own line, but I could never figure out the front end.
     def opening_prompt(self):
         prompt = f"""Please write the beginning of a {self.story_type} story about a child who uses {self.pronouns}
         named {self.name} and a {self.creature}. The story should be appropriate for {self.age} year olds, and the child
@@ -52,7 +67,9 @@ class Story:
         return prompt
 
     # Writes the prompts for all the subsequent parts of the story
-
+    # Stories follow the arc : Set up / opening, inciting incident, rising action, all-is-lost-moment, and happy ending
+    # - this arc is contained within the story_part argument, current_story is the story that has been generated so far
+    # This prompt asks the AI to carry on from where the last story piece left off, and sets a limit on the length
     def story_part_prompt(self, story, story_part):
         prompt = f"""Please continue writing this story: {story}. The next part of the story should be the
         {story_part}, and should smoothly carry on from the previous part. The story should be appropriate for {self.age}
@@ -67,16 +84,16 @@ class Story:
     def generate_story(self, story_pieces=[]):
         story_parts = ["inciting incident", "rising action", "all-is-lost moment", "happy ending"]  # story arc
 
-        prompt = self.opening_prompt()                           
-        story = ""                                               
-        story += self.ai_request(prompt)                         
-        story_pieces.append(self.ai_request(prompt))             
-        for i in story_parts:                                    
-            next_prompt = self.story_part_prompt(story, i)      
-            story_pieces.append(self.ai_request(next_prompt))    
-            story += self.ai_request(next_prompt)               
-        return story_pieces                                      
-                                                                 
+        prompt = self.opening_prompt()                           # this writes the opening story prompt
+        story = ""                                               # defines a blank string, to contain the story content
+        story += self.ai_request(prompt)                         # feeds that prompt to the API request
+        story_pieces.append(self.ai_request(prompt))             # adds the result of that request to the story_pieces list
+        for i in story_parts:                                    # for each part of the story arc in story_parts :
+            next_prompt = self.story_part_prompt(story, i)       # - generate a prompt that contains the story_part, and the story so far
+            story_pieces.append(self.ai_request(next_prompt))    # - use that prompt to generate the next part of the story, and then append it to story_pieces
+            story += self.ai_request(next_prompt)                # - ... and also concatenate it to the end of the story variable
+        return story_pieces                                      # all the story_pieces are then returned
+                                                                 # (This is now a full story, broken into a list of pieces)
 
 
 # Story Generation Step : 4 -- Full generation process in story_generation route in routes.py--------------------------
